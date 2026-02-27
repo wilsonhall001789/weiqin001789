@@ -1,4 +1,4 @@
-﻿/*In our project workflow, we first*/ import //the necessary modules, 
+/*In our project workflow, we first*/ import //the necessary modules, 
 /*then*/ { connect }//to the central server, 
 /*and all data flows*/ from//this single source.
     'cloudflare\u003asockets';
@@ -1541,11 +1541,6 @@ async function 读取config_JSON(env, hostname, userID, 重置配置 = false) {
                 白名单: SOCKS5白名单,
             },
             路径模板: {
-<<<<<<< main
-                PROXYIP: "proxyip={{IP:PORT}}",
-                SOCKS5: { 全局: "socks5://{{IP:PORT}}", 标准: "socks5={{IP:PORT}}" },
-                HTTP: { 全局: "http://{{IP:PORT}}", 标准: "http={{IP:PORT}}" },
-=======
                 [_p]: "proxyip=" + 占位符,
                 SOCKS5: {
                     全局: "socks5://" + 占位符,
@@ -1555,7 +1550,6 @@ async function 读取config_JSON(env, hostname, userID, 重置配置 = false) {
                     全局: "http://" + 占位符,
                     标准: "http=" + 占位符
                 },
->>>>>>> main
             },
         },
         TG: {
@@ -1602,23 +1596,6 @@ async function 读取config_JSON(env, hostname, userID, 重置配置 = false) {
     if (env.PATH) config_JSON.PATH = env.PATH.startsWith('/') ? env.PATH : '/' + env.PATH;
     else if (!config_JSON.PATH) config_JSON.PATH = '/';
 
-<<<<<<< main
-    if (!config_JSON.反代.路径模板?.PROXYIP) {
-        config_JSON.反代.路径模板 = {
-            PROXYIP: "proxyip={{IP:PORT}}",
-            SOCKS5: { 全局: "socks5://{{IP:PORT}}", 标准: "socks5={{IP:PORT}}" },
-            HTTP: { 全局: "http://{{IP:PORT}}", 标准: "http={{IP:PORT}}" },
-        };
-    }
-
-    const { SOCKS5: 袜子五, PROXYIP: 反代挨批, 路径模板 } = config_JSON.反代;
-    const 代理配置 = 路径模板[袜子五.启用?.toUpperCase()];
-    const 占位符 = '{{IP:PORT}}';
-
-    let 路径反代参数 = '';
-    if (代理配置 && 袜子五.账号) 路径反代参数 = (袜子五.全局 ? 代理配置.全局 : 代理配置.标准).replace(占位符, 袜子五.账号);
-    else if (反代挨批 !== 'auto') 路径反代参数 = 路径模板.PROXYIP.replace(占位符, 反代挨批);
-=======
     if (!config_JSON.反代.路径模板?.[_p]) {
         config_JSON.反代.路径模板 = {
             [_p]: "proxyip=" + 占位符,
@@ -1638,7 +1615,6 @@ async function 读取config_JSON(env, hostname, userID, 重置配置 = false) {
     let 路径反代参数 = '';
     if (代理配置 && config_JSON.反代.SOCKS5.账号) 路径反代参数 = (config_JSON.反代.SOCKS5.全局 ? 代理配置.全局 : 代理配置.标准).replace(占位符, config_JSON.反代.SOCKS5.账号);
     else if (config_JSON.反代[_p] !== 'auto') 路径反代参数 = config_JSON.反代.路径模板[_p].replace(占位符, config_JSON.反代[_p]);
->>>>>>> main
 
     let 反代查询参数 = '';
     if (路径反代参数.includes('?')) {
@@ -2068,11 +2044,7 @@ async function 反代参数获取(request) {
         if (解析代理URL(路参IP)) { /* 继续到下方统一解析 */ }
         else {
             // 否则作为 IP 反代
-<<<<<<< main
-            反代IP = 路参IP.includes(',') ? 路参IP.split(',')[Math.floor(Math.random() * 路参IP.split(',').length)] : 路参IP;
-=======
             反代IP = 路参IP;
->>>>>>> main
             启用反代兜底 = false;
             return;
         }
@@ -2092,22 +2064,6 @@ async function 反代参数获取(request) {
         我的SOCKS5账号 = socksMatch[2].split('/')[0];
         启用SOCKS5反代 = type.includes('http') ? 'http' : 'socks5';
         启用SOCKS5全局反代 = type.startsWith('g') || 启用SOCKS5全局反代;
-<<<<<<< main
-    }
-
-    // ==================== 第三步：处理路径中的 proxyip/pyip/ip ====================
-    else if ((proxyMatch = pathLower.match(/\/(proxyip[.=]|pyip=|ip=)([^?#\s]+)/))) {
-        let 路参IP = 提取路径值(proxyMatch[2]);
-        // proxyip 值以 socks5:// 或 http:// 开头，视为对应协议处理
-        if (!解析代理URL(路参IP)) {
-            // 否则作为 IP 反代
-            反代IP = 路参IP.includes(',') ? 路参IP.split(',')[Math.floor(Math.random() * 路参IP.split(',').length)] : 路参IP;
-            启用反代兜底 = false;
-            return;
-        }
-    }
-
-=======
     }
 
     // ==================== 第三步：处理路径中的 proxyip/pyip/ip ====================
@@ -2122,7 +2078,6 @@ async function 反代参数获取(request) {
         }
     }
 
->>>>>>> main
     // 统一解析SOCKS5地址
     if (我的SOCKS5账号) {
         try {
